@@ -1,74 +1,29 @@
 # PTC3360 - 2025
 
-<!--PARTE 1-->
-# Parte 1 - Redes de comunicação
+## [Parte 1 - Introdução](parte1_introducao/parte1.md)
 
-Referência: (Kurose, Seções 1.1 e 1.2)
-
-- Objetivo: Introduzir a terminologia e a infraestrutura das redes de comunicação atuais
-
-- Abordagem: Usar a Internet como exemplo
-
-- Visão geral:
-    - O que é a Internet?
-    - O que é um protocolo?
-    - Borda da rede: hosts, acesso a rede, meio físico
-    - Núcleo da rede: comutação por pacote e por circuito, estrutura da Internet
-
-- Conceitos básicos
-    - Elementos e estrutura de redes
-    - Camadas de protocolos, modelos
-de serviço
-
-## O que é a Internet?
-Há 2 formas de responder
-- Conjunto hardware + software
-- Infraestrutura de serviços
-
-## A borda da rede
-### Sistemas finais:
-### Redes de acesso:
-### Enlaces:
-
-## Núcleo da rede
-### Comutação de pacotes
-### Comutação de circuitos
-### Estrutura da rede
-
-## Camadas de protocolos e modelos de serviços
-Redes são complicadas e apresentam diversos elementos, como hosts, roteadores, enlaces de vários meios, aplicações, protocolos, ...
-
-Existe alguma forma de organizar a estrutura da rede?
-
-Usando viagem de avião como exemplo, podemos **dividir numa série de passos**.
-
-![Exemplo de avião para protocolos e serviços](./parte1_introducao/img/exemplo_viagem_aviao_protocolos_servicos.png)
-
-Cada camada implementa um serviço
-- via suas próprias ações internas à camada
-- contando com serviços providos pela camada inferior
-
-A divisão com camadas é importante para lidarmos com sistemas complicados
-- Tem uma estrutura mais explícita para identificar as
-relações entre as partes do sistema complicado
-- A modularização facilita a manutenção e atualização do sistema
-
-
-
-
-<!--PARTE 2-->
-# Parte 2 - Camadas superiores
-
-## Aplicação
-...
-
-## Transporte
-...
-
-## Rede
-...
-
+## [Parte 2 - Camadas superiores](parte2_camadassuperiores/parte2.md)
 
 <!--PARTE 3-->
+<!--
+# Parte 3 - Camadas de enlace e física (4 aulas)
+3.1. Introdução
+3.2. Controle de acesso ao canal compartilhado e endereçamento MAC
+3.3. Rádio enlaces
+-->
+
 <!--PARTE 4-->
+<!--
+# Parte 4 - Comunicações digitais e sua aplicação na camada física (11,5 aulas)
+4.1. Análise e operações sobre sinais
+4.2. Sinais aleatórios e filtro casado
+4.3. Modulação digital em banda base - caso binário
+4.4. Modulação digital em banda base - caso M-ário
+4.5. Modulação digital em banda passante (sistemas com portadora) -->
+
+
 <!--PARTE 5-->
+<!--
+# Parte 5 - Conclusões e perspectivas (0,5 aula)
+...
+-->
