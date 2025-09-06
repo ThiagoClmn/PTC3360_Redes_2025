@@ -40,7 +40,7 @@ Existe alguma forma de organizar a estrutura da rede?
 
 Usando viagem de avião como exemplo, podemos **dividir numa série de passos**.
 
-![Exemplo de avião para protocolos e serviços](./parte1_introducao/img/exemplo_viagem_aviao_protocolos_servicos.png)
+![Exemplo de avião para protocolos e serviços](./img/exemplo_viagem_aviao_protocolos_servicos.png)
 
 Cada camada implementa um serviço
 - via suas próprias ações internas à camada
