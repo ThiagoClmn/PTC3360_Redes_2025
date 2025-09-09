@@ -8,7 +8,7 @@ Segundo semestre de 2025
 
 O caderno pode ser acessado pelo arquivo [main.md](./main.md)
 
-- Página da ementa do jupiterweb: [link](https://uspdigital.usp.br/jupiterweb/obterDisciplina?sgldis=PTC3360&verdis=3)
+- Página da ementa do jupiterweb: <a href="https://uspdigital.usp.br/jupiterweb/obterDisciplina?sgldis=PTC3360&verdis=3" target="_blank">link</a>
 
 ## Referências bibliográficas
 
