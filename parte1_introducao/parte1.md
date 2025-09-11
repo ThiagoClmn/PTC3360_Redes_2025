@@ -50,3 +50,14 @@ A divisão com camadas é importante para lidarmos com sistemas complicados
 - Tem uma estrutura mais explícita para identificar as
 relações entre as partes do sistema complicado
 - A modularização facilita a manutenção e atualização do sistema
+    - Mudança de implementação do serviço numa camada é transparente para o resto do serviço
+    - Ex.: mudar o procedimento de embarque e desembarque não afeta o resto do sistema
+
+### Pilha de protocolos Internet
+- Aplicação
+- Transporte
+- Rede
+- Enlace
+- Física
+
+
