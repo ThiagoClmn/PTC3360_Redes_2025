@@ -68,8 +68,8 @@ Duas funções chaves do roteador:
     <img src="./img/rede_arquit_roteador.png" alt="Arquitetura de roteador da CISCO">
 </p>
 
-Link de vídeo explicativo: (o que há dentro de um roteador/switch/ ponto
-de acesso Wifi doméstico)[https://www.youtube.com/watch?v=q_8dpXrEwZI]
+Link de vídeo explicativo: [o que há dentro de um roteador/switch/ ponto
+de acesso Wifi doméstico](https://www.youtube.com/watch?v=q_8dpXrEwZI)
 
 #### Tabela de repasse: ideia inicial
 ...
