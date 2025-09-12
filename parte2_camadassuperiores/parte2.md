@@ -7,7 +7,21 @@
 -->
 # Parte 2 - Camadas superiores
 
+Referência:
+- Aplicação: (Kurose, Seções 2.1 e 2.2)
+
+- Neste capítulo do curso, será feita uma introdução a aspectos das 3 camadas superiores da pilha de protocolos Internet (Aplicação, Transporte e Rede).
+- A abordagem utilizada é a top-down, começando da camada de aplicação, mais próxima dos usuários, em direção à camada física.
+- Esses assuntos são detalhados em cursos posteriores de graduação e pós-graduação.
+
 ## Aplicação
+### Camada de aplicação
+...
+
+### Princípios da transferência confiável de dados (recorte da camada de transporte)
+...
+
+### Camada de rede
 ...
 
 ## Transporte
