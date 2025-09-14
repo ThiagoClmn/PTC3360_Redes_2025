@@ -33,7 +33,7 @@ O hardware é composto por:
 - dispositivos de armazenamento: dados são distribuídos em diversas unidades de disco rígido e dispositivos SSD
 
 > Como abordar um sistema tão complexo?
->>Dado que as redes de comunicação (Internet, por exemplo) são tão complexas, como estudar e entender seu funcionamento? $\rarr$ Vamos focar em princípios e estrutura básicos – fundamentos para entender as redes não só de hoje mas do futuro também.
+>>Dado que as redes de comunicação (Internet, por exemplo) são tão complexas, como estudar e entender seu funcionamento? <br><br>Vamos focar em princípios e estrutura básicos – fundamentos para entender as redes não só de hoje mas do futuro também.
 
 > Sem perder de vista conceitos mais gerais, usar exemplos concretos vindos sobretudo da Internet.
 >>**OBS.:** O uso de acrônimos é disseminado na área de redes (sopa de letras), como você perceberá nas próximas aulas. Mas você não precisa se preocupar em decorá-los.
