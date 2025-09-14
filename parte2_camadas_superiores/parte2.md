@@ -1,14 +1,15 @@
 <!--PARTE 2-->
 <!--
 2. Introdução às camadas superiores (7 aulas)
-2.1. Camada de aplicação
-2.2. Camada de transporte: Princípios da transferência confiável de dados
+
 2.3. Camada de rede: endereçamento IP e como funciona um roteador
 -->
 # Parte 2 - Camadas superiores
 
 Referência:
-- Aplicação: (Kurose, Seções 2.1 e 2.2)
+- Aplicação: Kurose, Seções 2.1 e 2.2
+- Transporte:
+- Rede:
 
 - Neste capítulo do curso, será feita uma introdução a aspectos das 3 camadas superiores da pilha de protocolos Internet (Aplicação, Transporte e Rede).
 - A abordagem utilizada é a top-down, começando da camada de aplicação, mais próxima dos usuários, em direção à camada física.
@@ -16,7 +17,87 @@ Referência:
 
 ## Aplicação
 ### Camada de aplicação
-...
+Alguns aplicativos de rede:
+- E-mail
+- Whatsapp
+- Waze e Google Maps
+- BitTorrent
+- Jogos online
+- Streaming de vídeo
+- Videoconferência (Meet e Zoom)
+- Redes socias
+- Dentre outros...
+
+#### Arquiteturas de aplicação
+1. Cliente-servidor
+    - Servidor:
+        - em host sempre ligado
+        - tem endereço IP permanente
+        - podem estar em data centers, pensando em escala (servidor virtual)
+    - Cliente:
+        - comunicam-se com servidor e não diretamente entre si
+        - podem se conectar de forma intermitente
+        - podem ter endereços IP dinâmicos
+    - Exemplos: Web, e-mail, streaming, ...
+
+2. *Peer-to-peer* (P2P)
+    - Dependência mínima de servidores dedicados
+    - Comunicação direta ente sistemas finais (peers)
+    - Peers requerem serviço de outros
+    peers – provêm serviço para outros
+    peers em retorno
+        - Autoescalável – novos peers trazem
+        novas demandas de serviço, mas
+        também fornecem serviço
+    - Peers conectam-se intermitentemente e mudam endereço IP
+        - Gerenciamento mais complexo
+    - Exemplo: BitTorrent, Bitcoin, Bluetooth
+
+#### Sockets
+
+- Aplicativo envia/recebe mensagens de/para uma interface de software ([API -Application Programming Interface](https://en.wikipedia.org/wiki/API)) : socket
+- Aplicativo transmissor envia mensagem pela porta
+- Ele confia na infraestrutura de transporte do outro lado da porta para entregar mensagem ao socket no aplicativo receptor
+- Aplicativo receptor lê dados do socket
+
+#### Endereçamento de processos
+
+- Para receber mensagens, processo precisa ter identificador
+- Dispositivo host tem endereço IP de 32 bits único (IPv4)
+- Endereço IP do host em que o processo roda é suficiente para identificar o processo? $\rarr$ Não. Muitos processos podem estar rodando no mesmo host!
+
+❖ Identificador inclui tanto endereço IP (32 bits) quanto número da porta associado com processo no host.
+- Exemplos de números de porta:
+    - Servidor web (HTTP): 80
+    - Servidor web (HTTPS): 443
+    - Servidor de e-mail (SMTP): 25
+    - Gerenciados pela Internet Assigned Numbers Authority (IANA)
+    - http://www.iana.org
+- Para enviar mensagem HTTP para servidor web www.usp.br:
+    - Endereço IP: 200.144.248.41
+    - Número de porta: 80
+- Mais em breve…
+
+O protocolo da camada de aplicação define:
+- Tipos de mensagens trocadas
+    - Por exemplo, requisição, resposta
+- Sintaxe da mensagem
+    - Campos da mensagem e como eles são delineados
+- Semântica das mensagens
+    - Significado das informações dos campos
+- Regras para quando e como aplicativos enviam e respondem mensagens
+
+Protocolos abertos:
+- Definidos em RFCs
+- Permitem interoperabilidade
+- Exemplos:
+    - HTTP [[RFC 9110](https://www.rfc-editor.org/rfc/rfc9110)]
+    - SMTP [[RFC 5321](https://tools.ietf.org/html/rfc5321)]
+
+Protocolos proprietários:
+    - Por exemplo, Microsoft Teams.
+
+SLIDE 15 DE 31 (PARTE DE CAMADA DE APLICAÇÃO)
 
 ### Princípios da transferência confiável de dados (recorte da camada de transporte)
 ...
@@ -25,6 +106,7 @@ Referência:
 ...
 
 ## Transporte
+<!-- 2.2. Camada de transporte: Princípios da transferência confiável de dados -->
 ...
 
 ## Rede
