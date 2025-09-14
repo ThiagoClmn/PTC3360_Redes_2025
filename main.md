@@ -2,7 +2,7 @@
 
 ## [Parte 1 - Introdução](parte1_introducao/parte1.md)
 
-## [Parte 2 - Camadas superiores](parte2_camadassuperiores/parte2.md)
+## [Parte 2 - Camadas superiores](parte2_camadas_superiores/parte2.md)
 
 <!--PARTE 3-->
 <!--
@@ -11,6 +11,7 @@
 3.2. Controle de acesso ao canal compartilhado e endereçamento MAC
 3.3. Rádio enlaces
 -->
+## [Parte 3 - Camadas de enlace e física](parte3_camadas_enlace_fisica/parte3.md)
 
 <!--PARTE 4-->
 <!--
