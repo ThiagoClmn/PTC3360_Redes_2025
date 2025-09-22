@@ -249,9 +249,9 @@ Contras:
 
 ##### **Eficiência**
 
-É a fração dos slots bem sucedidos.
+Eficiência ($E$) é a fração dos slots bem sucedidos.
 
-> Tráfego ofertado ($G$):  Número médio de tentativas de transmissão ou retransmissões em um dado instante
+Tráfego ofertado ($G$):  Número médio de tentativas de transmissão ou retransmissões em um dado instante
 
 Suponha que $N$ nós geram um tráfego $G\leq N$, que é originado das transmissões ou retransmissões que ocorrem com probabilidade $p = G/N$ por nó.
 
@@ -285,10 +285,9 @@ $$
 \left(1 - \dfrac{G}{N}\right)^{N-1} + (1-N)\dfrac{G}{N}\cdot\left(1 - \dfrac{G}{N}\right) = 0
 $$
 
-2) Mostrar que 
-$$
-\lim_{N \to \infty} = E_{max} = \dfrac{1}{e}
-$$
+2) Mostrar que $$ \lim_{N \to \infty} = E_{max} = \dfrac{1}{e} $$
+
+Solução: ...
 </div>
 <br>
 <p align="center">

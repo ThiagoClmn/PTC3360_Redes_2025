@@ -60,20 +60,24 @@ Alguns aplicativos de rede:
 - Ele confia na infraestrutura de transporte do outro lado da porta para entregar mensagem ao socket no aplicativo receptor
 - Aplicativo receptor lê dados do socket
 
+<p align="center">
+    <img src="./img/camada-app_sockets.png">
+</p>
+
 #### Endereçamento de processos
 
 - Para receber mensagens, processo precisa ter identificador
 - Dispositivo host tem endereço IP de 32 bits único (IPv4)
 - Endereço IP do host em que o processo roda é suficiente para identificar o processo? $\rarr$ Não. Muitos processos podem estar rodando no mesmo host!
 
-❖ Identificador inclui tanto endereço IP (32 bits) quanto número da porta associado com processo no host.
+- Identificador inclui tanto endereço IP (32 bits) quanto número da porta associado com processo no host.
 - Exemplos de números de porta:
     - Servidor web (HTTP): 80
     - Servidor web (HTTPS): 443
     - Servidor de e-mail (SMTP): 25
     - Gerenciados pela Internet Assigned Numbers Authority (IANA)
-    - http://www.iana.org
-- Para enviar mensagem HTTP para servidor web www.usp.br:
+    - [iana.org](http://www.iana.org)
+- Para enviar mensagem HTTP para servidor web [www.usp.br](http://www.usp.br/):
     - Endereço IP: 200.144.248.41
     - Número de porta: 80
 - Mais em breve…
@@ -97,7 +101,173 @@ Protocolos abertos:
 Protocolos proprietários:
     - Por exemplo, Microsoft Teams.
 
-SLIDE 15 DE 31 (PARTE DE CAMADA DE APLICAÇÃO)
+#### Exemplo de Aplicação: Web e HTTP 1.1
+
+Primeiro, alguns conceitos básicos…
+- Uma página web consiste de objetos (arquivos).
+- Um objeto pode ser um arquivo HTML, uma imagem JPEG, um arquivo de áudio, um vídeo, etc.
+- Uma página web consiste de “programa” HTML base que inclui diversos objetos referenciados.
+- Cada objeto é endereçável por uma URL (Uniform Resource Locator), por exemplo:
+
+<p align="center">
+    <img src="./img/camada-app_http-url.png" width="500">
+</p>
+
+#### Visão geral do HTTP
+
+Sigla para HyperText Transfer Protocol
+
+- HTTP 1.0 (RFC 1945 - 1996)
+- HTTP 1.1 (RFC 2068 –1997)
+- HTTP/2 (RFC 7540 - 2015)
+- HTTP/3 (RFC 9114 – junho/2022)
+- Protocolo associado à aplicação World Wide Web
+- Modelo cliente/servidor
+    - Cliente: navegador que pede, recebe e apresenta objetos Web (Microsoft Edge, Firefox, Chrome)
+    - Servidor: servidor Web envia objetos em resposta a requisições (Apache, Microsoft Internet Information Server)
+
+<p align="center">
+    <img src="./img/camada-app_http-reqresp.png" width="350">
+</p>
+
+Usa TCP como protocolo da camada de transporte:
+- Cliente inicia conexão TCP (cria socket) para o servidor, porta 80
+- Servidor aceita conexão TCP do cliente
+- Mensagens HTTP trocadas entre navegador (cliente HTTP) e servidor Web (servidor HTTP)
+- Conexão TCP fechada
+
+HTTP é “sem memória”
+- Servidor não mantém informação sobre pedidos anteriores do cliente
+
+**OBS.:** Protocolos que mantêm “memória” são complexos!
+- História passada (estado) precisa ser mantido
+- Se cliente/servidor cai, suas visões do “estado” podem ser inconsistentes e precisam ser reconciliadas
+
+##### Tipos de conexão HTTP
+
+- HTTP não persistente
+    - No máximo um objeto enviado sobre uma conexão TCP
+        - Conexão então fechada
+    - Fazer download de múltiplos objetos requer múltiplas conexões
+- HTTP persistente
+    - Múltiplos objetos podem ser enviados sobre única conexão TCP entre cliente, servidor
+    - Padrão para HTTP/1.1
+
+##### HTTP não persistente
+Suponha que usuário digita URL: [http://www.lcs.poli.usp.br/contato.html](http://www.lcs.poli.usp.br/contato.html)
+
+<p align="center">
+    <img src="./img/camada-app_http-nao-persist.png" width="470">
+</p>
+<p align="center">
+    <img src="./img/camada-app_http-nao-persist2.png" width="470">
+</p>
+
+>RTT (Round-Trip Time): tempo para pequeno pacote viajar do cliente ao servidor e voltar tempo de resposta HTTP:
+
+- 1 RTT para iniciar conexão TCP
+- 1 RTT para pedido HTTP e primeiros bytes da resposta HTTP retornar
+- Tempo de transmissão do arquivo
+- Tempo de resposta para HTTP não persistente = 2RTT + tempo de transmissão do arquivo
+
+<p align="center">
+    <img src="./img/camada-app_http-nao-persist-rtt.png" width="400">
+</p>
+
+##### HTTP persistente
+Problemas do HTTP não persistente :
+- Requer 2 RTTs por objeto, aumentando a latência do sistema
+
+HTTP persistente:
+- Servidor deixa conexão aberta depois de enviar resposta
+- Mensagens HTTP subsequentes entre mesmo cliente/servidor enviadas sobre a conexão aberta
+- Cliente envia pedido assim que encontra objeto referenciado
+- Perto de 1 RTT para todos os objetos referenciados
+
+#### Mensagem pedido HTTP 1.1
+
+- 2 tipos de mensagens HTTP: pedido (request), resposta
+- Mensagem pedido HTTP:
+    - ASCII (formato que permite leitura por humanos)
+
+<p align="center">
+    <img src="./img/camada-app_http-1-1-header.png" width="400">
+</p>
+
+##### Mensagem pedido HTTP 1.1: Formato geral
+
+<p align="center">
+    <img src="./img/camada-app_http-1-1-header-formatogeral.png" width="400">
+</p>
+
+##### Mensagem resposta HTTP 1.1
+
+<p align="center">
+    <img src="./img/camada-app_http-1-1-header-formatogeral-resposta.png" width="400">
+</p>
+
+##### Códigos de estado da resposta HTTP
+
+- Código de estado aparece na 1a linha da mensagem resposta servidor-cliente
+- Alguns códigos exemplos:
+    - 200 OK
+        - Atendido com sucesso, objeto pedido mais para frente na msg
+    - 301 Moved Permanently
+        -  Objeto pedido foi movido, nova localização especificada mais a frente nessa msg (Location:)
+    - 400 Bad Request
+        - Mensagem pedido não entendida pelo servidor
+    - 404 Not Found
+        - Documento pedido não encontrado nesse servidor
+    - 505 HTTP Version Not Supported
+
+##### Experimentando o HTTP 1.1 (lado cliente)
+
+Usando o Wireshark:
+
+1. Abra o navegador
+2. Abra o Wireshark e inicialize a varredura de pacotes no enlace usado para acesso à rede (e.g., WiFi)
+3. Acesse pelo navegador o endereço [http://nginx.org/](http://nginx.org/)
+4. Siga (‘follow’ no Wireshark) a troca HTTP para este pedido
+
+<p align="center">
+    <img src="./img/camada-app_http-1-1-wireshark.png" width="600">
+</p>
+
+**OBS - HTTPS**
+
+- O HTTPS (Hyper Text Transfer Protocol Secure - protocolo de transferência de hipertexto seguro) é uma implementação do protocolo HTTP que tem se tornado o padrão na web.
+- Possui uma camada adicional de segurança que utiliza o protocolo SSL/TLS.
+- Essa camada adicional permite que os dados sejam transmitidos por meio de uma conexão criptografada e que se verifique a autenticidade do servidor e do cliente por meio de certificados digitais. Passou a ser o padrão a partir do HTTP/2.
+- A porta usada para o protocolo HTTPS é a 443.
+
+**OBS - HTTP/3 e QUIC**
+
+- Diferentemente das versões anteriores, o HTTP/3 não é baseado no TCP mas sim no [QUIC](https://en.wikipedia.org/wiki/QUIC) ([RFC 9000](https://datatracker.ietf.org/doc/html/rfc9000)), desenvolvido inicialmente pelo Google.
+- Em 2025, cerca de [33% do tráfego HTTP já é realizado sobre o QUIC](https://radar.cloudflare.com/adoption-and-usage#http-version). A principal vantagem é a diminuição significativa do tempo de resposta.
+- Nesta disciplina, tomamos por base a versão 1.1 do HTTP por questões didáticas. Dessa forma, fica mais fácil se concentrar nos princípios da camada de aplicação, deixando o problema da comunicação confiável para a camada de transporte que será vista a partir da próxima aula.
+- Um vídeo inicial sobre as diferenças do HTTP/3 em relação às versões anteriores pode ser visto [aqui](https://youtu.be/cdb7M37o9sU).
+- Mais detalhes sobre o HTTP/3 e o QUIC são deixados para cursos mais avançados.
+
+**Exercício do Kurose (p. 125)**
+
+Considere o seguinte string de caracteres ASCII que foram capturados pelo Wireshark quando o navegador enviou uma mensagem HTTP GET. Os caracteres
+`<cr><lf>` são caracteres carriage return e line-feed . Responda as seguintes questões,
+indicando onde na mensagem HTTP GET abaixo você encontra a sua resposta.
+
+<p align="center">
+    <img src="./img/exerc-kurose-httpheader.png" width="500">
+</p>
+
+a) Qual o URL do documento requisitado pelo navegador?
+
+b) Qual a versão de HTTP o navegador está rodando?
+
+c) O navegador requisitou uma conexão persistente ou não persistente?
+
+d) Qual é o endereço IP do host no qual o navegador está rodando?
+
+e) Que tipo de navegador iniciou a mensagem? Por que é necessário o tipo de navegador numa mensagem de pedido HTTP?
+
 
 ### Princípios da transferência confiável de dados (recorte da camada de transporte)
 ...
