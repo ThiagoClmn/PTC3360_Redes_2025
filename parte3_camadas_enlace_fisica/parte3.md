@@ -1,33 +1,16 @@
 # Parte 3 - Camadas de enlace e física
 
-<!--
-3.1 Introdução
-Referência para estudo: Kurose, Seção 5.1 e notas de aula.
-
-3.2 Controle de acesso ao canal compartilhado e endereçamento MAC
-
-Referência para estudo: Kurose, Seções 6.3 e notas de aula.
-
-3.3 Endereçamento MAC e switches
-
-Referência para estudo: Kurose, Seções 6.4 e notas de aula.
-
-3.4 Camada Física: meios de transmissão
-
-Referência para estudo: notas de aula
-
-3.5 Camada Física: Rádio-enlaces
-
-Referência para estudo: Mariotto, Cap. 4, Wentworth, Cap. 8 e notas de aula.
-
-Referência: (Kurose, Seções 1.1 e 1.2)
--->
-
-Referências:
-- Kurose, Seções 6.1 e 6.3
+Referências (Camada de enlace):
+- Kurose, Seções 5.1, 6.1, 6.3, 6.4
 - Tanembaum, Seção Seção 4.2
+- Notas de aula
 
-## Introdução
+Referências (Camada física):
+- Mariotto, Cap. 4
+- Wentworth, Cap. 8
+- Notas de aula
+
+## Camada de enlace
 
 A camada de enlace trata da transferência de **quadros** entre elementos vizinhos na rede. Alguns protocolos importantes dessa camada são:
 - Ethernet
@@ -259,16 +242,16 @@ Probabilidade de que dado nó tenha sucesso em um slot = $p(1-p)^{N-1}$
 
 Probabilidade de que qualquer nó
 tenha sucesso:
-$$
-E = Np(1-p)^{N-1} = G\left(1 - \dfrac{G}{N}\right)^{N-1}
-$$
+
+$$E = Np(1-p)^{N-1} = G\left(1 - \dfrac{G}{N}\right)^{N-1}$$
 
 <div style="border: 1px solid #ccc; padding: 10px; background-color: #0000;">
 1) Mostrar que a eficiência máxima do slotted ALOHA é
 
 $$
-E_{max} = \left( 1 - \dfrac{1}{N} \right)^{N-1}
+E_{max} = \left(1 - \dfrac{1}{N} \right)^{N-1}
 $$
+
 e ocorre para $G = 1$.
 
 Solução: Derivada nula de E em relação a G (ponto crítico):
@@ -282,10 +265,20 @@ $$
 $$
 
 $$
-\left(1 - \dfrac{G}{N}\right)^{N-1} + (1-N)\dfrac{G}{N}\cdot\left(1 - \dfrac{G}{N}\right) = 0
+1\cdot\left(1 - \dfrac{G}{N}\right)^{N-1} + 
+G\cdot
+(N-1)\left(1 - \dfrac{G}{N}\right)^{N-2}\left(- \dfrac{1}{N}\right) = 0
 $$
 
-2) Mostrar que $$ \lim_{N \to \infty} = E_{max} = \dfrac{1}{e} $$
+$$
+\left(1 - \dfrac{G}{N}\right)^{N-1} = \dfrac{G(N-1)}{N}\left(1 - \dfrac{G}{N}\right)^{N-2}
+$$
+
+2) Mostrar que
+
+$$
+\lim_{N \to \infty} = E_{max} = \dfrac{1}{e}
+$$
 
 Solução: ...
 </div>
@@ -325,28 +318,39 @@ A probabilidade de sucesso para um dado nó depende da transmissão dele e de ne
     <img src="./img/aloha-puro-eficiencia.png" alt="Transmissão no ALOHA puro" width="500">
 </p>
 
-$$ \text{P(sucesso dado nó)} = p\cdot(1-p)^{N-1}\cdot (1-p)^{N-1} $$
-$$ \text{P(sucesso dado nó)} = p\cdot(1-p)^{2(N-1)} $$
-$$\therefore
-\text{P(sucesso para qualquer nó)} = Np\cdot(1-p)^{2(N-1)}
+$$
+\text{P(sucesso dado nó)} = p\cdot(1-p)^{N-1}\cdot (1-p)^{N-1}
 $$
 
-Dessa forma: $E = G\left(1 - \dfrac{G}{N} \right)^{2(N-1)}$
+$$
+\text{P(sucesso dado nó)} = p\cdot(1-p)^{2(N-1)}
+$$
 
+$$
+\therefore \text{P(sucesso para qualquer nó)} = Np\cdot(1-p)^{2(N-1)}
+$$
+
+Dessa forma:
+
+$$
+E = G\left(1 - \dfrac{G}{N} \right)^{2(N-1)}$$
+<!--
 <div style="border: 1px solid #ccc; padding: 10px; background-color: #0000;">
+</div>
+-->
 
 Exercícios:
 
 1) Mostrar que a eficiência máxima a o ALOHA puro é
+
 $$
 E_{max} = \left( \dfrac{N}{2N-1} \right)\left( 1 - \dfrac{1}{2N-1} \right)^{2(N-1)}
 $$
+
 e ocorre para $G = G_0 = \dfrac{N}{2N−1}$
 
 
 2) Mostrar que $\lim_{N\to\infty} E_{max} = \dfrac{1}{2e}$
-</div>
-
 <p align="center">
     <img src="./img/aloha-puro-eficiencia-plot.png" alt="Transmissão no ALOHA puro" width="500">
 </p>
@@ -532,7 +536,23 @@ Só aplicar o limite de uma fração com denominador tendendo a infinito ou do n
 
 
 ## Endereçamento MAC e *switches*
-SERÁ COBRADO NA P2
+
+### Endereço MAC
+- Endereço IP:
+    - Endereço de camada de rede para interface
+    - Usado para repasse e roteamento na camada 3 (camada de rede) – padrão da Internet
+- Endereço MAC (Media Access Control) ou LAN ou físico ou Ethernet
+    - Endereço de camada de enlace em protocolos como Ethernet e Wi-Fi – padrão desses protocolos
+    - Funções:
+        - Identificar unicamente placa de rede de forma global (como um documento de identificação)
+        - Usado localmente para levar quadro de uma interface para outra fisicamente conectada (mesma sub-rede, no sentido de endereçamento IP)
+    - Endereços de 48 bits (6 bytes) gravado na ROM da interface de rede, às vezes também ajustável via software
+    - Exemplo: 1A-2F-BB-76-09-AD (notação hexadecimal - cada dígito representa 4 bits)
+
+### Endereço LAN
+...
+
+### Switches
 
 <!--
 ## Camada física: meios de transmissão
@@ -542,6 +562,44 @@ SERÁ COBRADO NA P2
 ...
 
 -->
+
+
+## Camada física
+
+### Conceitos preliminares de rádio-enlaces
+
+Um pouco de alguns conceitos envolvendo irradiação em antenas
+
+- Potência eletromagnética irradiada: é a potência irradiada média (saída de energia por tempo) através de uma superfície $S$:
+
+$$
+P = \int_{S} N\cdot dS
+$$
+
+Sendo $N$ o **vetor de Poynting médio**, que pode ser interpretado como a densidade de potência irradiada ($W/m^2$)
+
+- Antena
+    - Dispositivo que visa irradiar a potência injetada
+        - Idealmente, a potência irradiada $P$ é igual à injetada. Não há dissipação em calor.
+    - Antena ideal isotrópica
+        - E uma antena ideal que gera densidade de potˆencia m´edia ´ N com dire¸c˜ao radial e de mesma intensidade em todas as dire¸c˜oes: $N = N_ru_r$ . A uma distância $r$ da antena:
+
+$$ N_r = \dfrac{P}{4\pi r^2} \text{ } W/m^2$$
+
+- Diretividade
+Mede como a densidade de potência irradiada se distribui em função de ($\theta$,$\phi$). Toma como referência antena isotrópica irradiando a mesma potência $P$ e considera as densidades à mesma distância $r$. Na direção dada pelo ângulos $\theta$ e $\phi$,
+
+$$
+D(\theta,\phi) = \dfrac{N_r}{N_r\text{ da antena isotrópica}} = \dfrac{4\pi r^2}{P}N_r
+$$
+
+Note que:
+1. Para a antena isotrópica $D(\theta,\phi) \equiv 1$
+2. Para antena não isotrópica, $D(\theta,\phi) > 1$ em algumas direções e $D(\theta,\phi) < 1$ em outras já que a potência irradiada P é sempre a mesma.
+
+
+
+
 
 
 ## Links extras:
