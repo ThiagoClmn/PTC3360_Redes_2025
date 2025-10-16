@@ -137,7 +137,7 @@ Ex.: Técnicas MAC e implementações práticas
     <img src="./img/enlace_mac-tecnicas-implementacoes.png" width="600">
 </p>
 
-Retirado de [A. Laya et al., “Goodbye, ALOHA”, IEEE Access, 2016](./extra/Goodbye_ALOHA.pdf)
+Retirado de [A. Laya et al., “Goodbye, ALOHA”, IEEE Access, 2016](Goodbye_ALOHA.pdf)
 
 **Obs.:**
 - BLE – [Bluetooth Low Energy](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy);
@@ -603,5 +603,5 @@ Note que:
 
 
 ## Links extras:
-- [The ALOHANET - Surfing for Wireless Data - História do ALOHA pelo seu inventor](./extra/THE-ALOHANET-—-SURFING-FOR-WIRELESS-DATA.pdf)
+- [The ALOHANET - Surfing for Wireless Data - História do ALOHA pelo seu inventor](THE-ALOHANET-—-SURFING-FOR-WIRELESS-DATA.pdf)
 
