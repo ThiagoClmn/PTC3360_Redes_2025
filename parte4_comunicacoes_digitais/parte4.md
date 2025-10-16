@@ -1,10 +1,13 @@
-# Parte 1 - Comunicações digitais e suas aplicações na camada física
+# Parte 4 - Comunicações digitais e suas aplicações na camada física
 
-Referência:
-- Parte 1: Kurose, Seções 1.1 e 1.2
-- Parte 2: Kurose, Seções 1.2 e 1.3
-- Parte 3: Kurose, Seções 1.3 e 1.5
+Referências:
+- 
 
-- Objetivo: Introduzir a terminologia e a infraestrutura das redes de comunicação atuais
+## Introdução
+Vimos que a principal função da camada física e representar os bits que compoem um quadro por meio de sinais adequados ao meio de transmissao.
 
-- Abordagem: Usar a Internet como exemplo
+## Densidade espectral de energia e de potência (DEE e DEP)
+...
+
+## Filtros casados
+...
