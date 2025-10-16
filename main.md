@@ -14,6 +14,7 @@
 ## [Parte 3 - Camadas de enlace e física](parte3_camadas_enlace_fisica/parte3.md)
 
 <!--PARTE 4-->
+## [Parte 4 - Comunicações digitais e suas aplicações na camada física](parte4_comunicacoes_digitais/parte4.md)
 <!--
 # Parte 4 - Comunicações digitais e sua aplicação na camada física (11,5 aulas)
 4.1. Análise e operações sobre sinais
